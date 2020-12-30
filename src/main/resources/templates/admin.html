@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+	<title>SpringBoot -OTP ::admin page</title>
+    <div th:replace="header :: header-css"/>
+</head>
+<body>
+
+<div th:replace="header :: header"/>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1 class="text-center">Admin page (One Time Password)</h1>
+
+        <h1 class="text-center" th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+      	<span class="text-center" sec:authorize="isAuthenticated()">
+	                <h3 class="text-center">| Logged user: | Roles: </h3>
+					<span class="text-center" sec:authentication="name"></span>
+			<span class="text-center" sec:authentication="principal.authorities"></span>
+			<a class="text-center" th:href="@{/dashboard}"><h4 class="text-center">Back</h4>
+			</a>
+	     </span>
+		 <h3 class="text-center">One Time Password :</h3>
+		<a class="text-center" th:href="@{/generateOtp}"><h4 class="text-center">OTP</h4> </a>
+
+    </div>
+
+</div> 
+
+
+</body>
+</html>

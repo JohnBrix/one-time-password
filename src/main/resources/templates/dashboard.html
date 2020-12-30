@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+	<div th:replace="header :: header-css" />
+</head>
+<body>
+
+	<div th:replace="header :: header" />
+
+	<div class="container">
+
+		<div class="starter-template"style="margin-top: 50px">
+			<h1 class="text-center">Dashboard</h1>
+
+			<h1 class="text-center" th:inline="text">Hello :
+				[[${#httpServletRequest.remoteUser}]]!</h1>
+		</div>
+
+		<div class="text-center" sec:authorize="hasRole('ROLE_ADMIN')">
+			<a th:href="@{/admin}"><h3 class="text-center">Click if you're Admin</h3></a>
+		</div>
+		<div class="text-center" sec:authorize="hasRole('ROLE_USER')">
+			<a th:href="@{/user}"><h3 class="text-center">Click if you're User</h3></a>
+		</div>
+	</div>
+
+	<script type="text/javascript"
+		src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
